@@ -29,6 +29,8 @@ from telebot.types import Update
 
 def remove_overtimed_requests():
     while True:
+        src_file.seek(0)
+        dst_file.seek(0)
         delete_result = database.requests.delete_many({'time': {'$lte': time()}})
         deleted_count = delete_result.deleted_count
         if deleted_count > 0:
